@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+	<style type="text/css">
+	
+         
+    .header{
+        background-color: #f77878;
+           
+      }
+      input {
+            outline: 0;
+            border-width: 0 0 2px;
+            border-color: blue;
+            width: 65%;
+            height: 40px;
+            font-size: 20px;
+          font-weight: bolder;
+            color: blue;
+        }
+        input:focus {
+        border-color: green;
+        }
+        button{
+          width: 30%;
+          height: 45px;
+          border-radius: 10px;
+          border: 2px solid blue;
+          outline: none !important;
+          font-size: 20px;
+          background-color: blue;
+          color: white;
+          font-weight: bolder;
+
+        }
+        p{
+          color: green;
+          font-size: 20px;
+          font-weight: bolder;
+        }
+        .overflowTest {
+            color: blue;
+       overflow-y: scroll;
+       height: 80px;
+}
+        .but{
+          width: 75%;
+        }
+        h4{
+          color: blue;
+        }
+       .borderless{
+          outline: 0 !important;
+          width: 65%;
+          border-bottom: 2px solid blue;
+            border-width: 0 0 2px;
+
+          
+       }
+       .back{
+        background-color: blue;
+        color: white;
+       }
+       option{
+        font-size: 17px;
+        font-weight: bolder;
+        color: #7d7171;
+       }
+
+
+</style>
+</head>
+<body>
+	<div class="header" style=" height:75px;">
+        
+      </div>
+    <div class="container-fluid">
+
+  <div class="row">
+
+    <div class="col-lg-4 header">
+      
+    </div>
+    <div class="col-lg-4 col-sm-12 text-center header">
+      <div class="container bg-white">
+      <br>
+
+        <h4 class="text-center">Add Details</h4>
+      <br>
+          <br>
+         <input type="text" placeholder="Name" name="name" id="name">
+
+          <br>
+          <br>
+         <input type="email" placeholder="Email" name="email" id="email"><br><br>
+ 
+         <input type="number" placeholder="age" name="age" id="age"><br><br>
+ 
+         <input type="number" placeholder="Aadhaar number" name="Aadhaarnumber" id="aadhaarnumber"><br><br><br>
+         <div class="text-center">
+       <select class="borderless" id="gender" >
+                    
+                    <option value="">Gender</option>
+                    <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    <option value="Other">Others</option>
+
+                  </select>
+    </div><br><br>
+         <input type="file" name="file" id="file"><br><br>
+
+
+          <br><br>
+       <input class="back" type="button" value="sumbit" onclick="myScript()" />
+       <br><br><br>
+       <hr class="border">
+      </div>
+    </div>
+    <div class="col-lg-4 header">
+      
+    </div>
+    
+  </div></div>
+  <div class="header" style=" height:75px;">
+    
+  </div>
+  
+
+</body>
+
+
+<script>
+    var newuser=[];
+    var fileContent;
+     window.addEventListener("load", function() {
+  document.getElementById("file").onchange = function(event) {
+  var reader = new FileReader();
+  reader.readAsDataURL(event.srcElement.files[0]);
+  var me = this;
+  reader.onload = function () {
+       fileContent = reader.result;
+     console.log(fileContent);
+ }
+}});
+
+    function myScript() {
+            var data1 = JSON.parse(localStorage.getItem('user3'));
+            
+         if(!data1){
+                 var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var age = document.getElementById('age').value;
+        var aadhaarnumber = document.getElementById('aadhaarnumber').value;
+        var gender = document.getElementById('gender').value;
+        var data = {
+                name:name,
+                email:email,
+                age:age,
+                gender:gender,
+                aadhaarnumber:aadhaarnumber,
+                file:fileContent
+        }
+        console.log(data);
+        newuser.push(data);
+        localStorage.setItem('user3',JSON.stringify(newuser));
+        if (name=='') {
+            alert('please fill details')
+        }
+        else if (email=='') {
+            alert('please fill details')
+        }
+        else if (age=='') {
+            alert('please fill details')
+        }
+        else if (aadhaarnumber=='') {
+            alert('please fill details')
+        }
+        else{
+        location.replace("index.html")
+        }
+        
+    }
+    else{
+        for(let i=0;i<data1.length;i++){
+                newuser.push(data1[i])
+            }
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var age = document.getElementById('age').value;
+        var aadhaarnumber = document.getElementById('aadhaarnumber').value;
+        var gender = document.getElementById('gender').value;
+        var data = {
+                name:name,
+                email:email,
+                age:age,
+                aadhaarnumber:aadhaarnumber,
+                gender:gender,
+                file:fileContent
+        }
+        console.log(data);
+        newuser.push(data);
+        localStorage.setItem('user3',JSON.stringify(newuser));
+        if (name=='') {
+            alert('please fill details')
+        }
+        else if (email=='') {
+            alert('please fill details')
+        }
+        else if (age=='') {
+            alert('please fill details')
+        }
+        else if (aadhaarnumber=='') {
+            alert('please fill details')
+        }
+        else{
+        location.replace("index.html")
+        }
+
+    }
+    }
+
+</script>
+
+
+
+
+// //var newuser=[];
+//  // var fileContent;
+//                  window.addEventListener("load", function() {
+//       document.getElementById("file").onchange = function(event) {
+//       var reader = new FileReader();
+//       reader.readAsDataURL(event.srcElement.files[0]);
+//       var me = this;
+//      reader.onload = function () {
+//      fileContent = reader.result;
+//       console.log(fileContent);
+//   }
+// }});
+// 	function myScript(){
+
+//   //  var details=JSON.parse(localStorage.getItem("user3"));
+//   // for (var i = 0; i < details.length; i++) {
+//   //  use
+//   // }
+
+
+
+// 		var name=document.getElementById('name').value;
+//     var email=document.getElementById('email').value;
+//     var age=document.getElementById('age').value;
+//     var Aadhaarnumber=document.getElementById('Aadhaarnumber').value;
+//     var gender=document.getElementById('gender').value;
+//   var data={
+// 	name:name,
+// 	email:email,
+// 	age:age,
+// 	Aadhaarnumber:Aadhaarnumber,
+//   gender:gender,
+//   file:fileContent
+// }
+// if(name==""){
+//   window.alert("Please fill the detail")
+// }
+// else if(email==""){
+//     window.alert("Please fill the detail")
+//       }
+// else if (age=="") {
+//     window.alert("Please fill the detail")
+//     }
+// else if (Aadhaarnumber=="") {
+//      window.alert("Please fill the detail")
+//       }
+// else if (gender=="") {
+//     window.alert("Please fill the detail")
+//         }
+// else if (file=="") {
+//     window.alert("Please fill the detail")
+//  }   
+// else {
+
+//   var newuser=JSON.parse(localStorage.getItem("user3"));
+//  
+
+</html>
